@@ -14,7 +14,9 @@ root = Tk()
 canvas = Canvas(root)
 canvas.grid(row=1920, column=1080)
 
-path = "D:\\Programs\\Official\\studentDB\\images"
+main_folder = # Full path to the project 
+
+path = "# Full path to image folder"
 image_list = os.listdir(path)
 image_list.pop()
 im = Image.open(os.path.join(path, image_list[random.randint(0, len(image_list))]))
@@ -37,10 +39,10 @@ def backup():
         import zipfile
 
         os.system("mkdir DB_backup")
-        dirs = os.listdir("D:\\Programs\\Official\\studentDB\\DB")
+        dirs = os.listdir(main_folder)
         for dir in dirs:
             zf = zipfile.ZipFile(f"DB_backup\\{dir}.zip", "w")
-            for dirname, subdirs, files in os.walk("D:\\Programs\\Official\\studentDB\\DB"):
+            for dirname, subdirs, files in os.walk(main_folder):
                 zf.write(dirname)
                 for filename in files:
                     zf.write(os.path.join(dirname, filename))
@@ -53,7 +55,7 @@ def backup():
 
         compress()
         messagebox.showinfo("Backup instruction",
-                            "Now you will be redirected to google authenticationpage, \nplease allow acces to the app so that your Ddatabase will be\nuploaded in your google drive")
+                            "Now you will be redirected to google authentication page, \nplease allow acces to the app so that your Ddatabase will be\nuploaded in your google drive")
         g_login = GoogleAuth()
         g_login.LocalWebserverAuth()
         drive = GoogleDrive(g_login)
@@ -266,7 +268,7 @@ def edit():
         for line in lines:
             file.write(line)
         file.close()
-        os.system(f"RD /S /Q D:\\Programs\\Official\\studentDB\\DB\\{entry_hash}")
+        os.system(f"RD /S /Q {main_folder}\\{entry_hash}")
         messagebox.showinfo("Entry removed", f"The member you requested to delete '{deleted_member}' has removed successfully")
 
 
