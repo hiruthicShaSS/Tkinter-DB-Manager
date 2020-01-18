@@ -338,7 +338,7 @@ def about():
     Button(root, text="Github", command=git, width=10, fg="blue", bg="black").grid(row=5, column=0)
     Button(root, text="Instagram", command=insta, width=10, fg="blue", bg="black").grid(row=6, column=0)
     Button(root, text="Twitter", command=tweet, width=10, fg="blue", bg="black").grid(row=7, column=0)
-    Label(root, text="Mail: hiruthic@karunya.edu.in").grid(row=8, column=0)
+    Label(root, text="Mail: idiotpyscripts.gmail.com").grid(row=8, column=0)
     Label(root, text="Phone: 9360843817").grid(row=9, column=0)
 
 
