@@ -14,9 +14,7 @@ root = Tk()
 canvas = Canvas(root)
 canvas.grid(row=1920, column=1080)
 
-main_folder = # Full path to the project 
-
-path = "# Full path to image folder"
+path = "D:\\Programs\\Official\\studentDB\\images"
 image_list = os.listdir(path)
 image_list.pop()
 im = Image.open(os.path.join(path, image_list[random.randint(0, len(image_list))]))
@@ -39,10 +37,10 @@ def backup():
         import zipfile
 
         os.system("mkdir DB_backup")
-        dirs = os.listdir(main_folder)
+        dirs = os.listdir("D:\\Programs\\Official\\studentDB\\DB")
         for dir in dirs:
             zf = zipfile.ZipFile(f"DB_backup\\{dir}.zip", "w")
-            for dirname, subdirs, files in os.walk(main_folder):
+            for dirname, subdirs, files in os.walk("D:\\Programs\\Official\\studentDB\\DB"):
                 zf.write(dirname)
                 for filename in files:
                     zf.write(os.path.join(dirname, filename))
@@ -55,7 +53,7 @@ def backup():
 
         compress()
         messagebox.showinfo("Backup instruction",
-                            "Now you will be redirected to google authentication page, \nplease allow acces to the app so that your Ddatabase will be\nuploaded in your google drive")
+                            "Now you will be redirected to google authenticationpage, \nplease allow acces to the app so that your Ddatabase will be\nuploaded in your google drive")
         g_login = GoogleAuth()
         g_login.LocalWebserverAuth()
         drive = GoogleDrive(g_login)
@@ -90,7 +88,7 @@ def call_proof():
     Label(root, text=f"Proof{row - 6} loaded: {path.split('/')[-1]}") \
         .grid(row=row, column=6)
 
-def reset_canvas():
+def reset_canvas(*op):
     global canvas, root
     # canvas.destroy()
     # canvas = Canvas(root, width=600, height=600)
@@ -101,7 +99,12 @@ def reset_canvas():
             pass
         else:
             widget.destroy()
-    bg()
+    try:
+        if op[0] == "back":
+            print("hi")
+            bg()
+    except IndexError:
+        pass
 
 def store(Fname, Lname, phone, D, M, Y, a, g):
     global proof
@@ -268,7 +271,7 @@ def edit():
         for line in lines:
             file.write(line)
         file.close()
-        os.system(f"RD /S /Q {main_folder}\\{entry_hash}")
+        os.system(f"RD /S /Q D:\\Programs\\Official\\studentDB\\DB\\{entry_hash}")
         messagebox.showinfo("Entry removed", f"The member you requested to delete '{deleted_member}' has removed successfully")
 
 
@@ -315,7 +318,7 @@ def graph():
     img.grid(row=0, column=0)"""
 
 def back():
-    reset_canvas()
+    reset_canvas("back")
     Label(root, text="-"*20 + "\n Select something from the File menu \n" + "-"*20).grid(row=0, column=0)
 
 
@@ -338,7 +341,7 @@ def about():
     Button(root, text="Github", command=git, width=10, fg="blue", bg="black").grid(row=5, column=0)
     Button(root, text="Instagram", command=insta, width=10, fg="blue", bg="black").grid(row=6, column=0)
     Button(root, text="Twitter", command=tweet, width=10, fg="blue", bg="black").grid(row=7, column=0)
-    Label(root, text="Mail: idiotpyscripts.gmail.com").grid(row=8, column=0)
+    Label(root, text="Mail: hiruthic@karunya.edu.in").grid(row=8, column=0)
     Label(root, text="Phone: 9360843817").grid(row=9, column=0)
 
 
